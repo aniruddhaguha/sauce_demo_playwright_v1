@@ -25,6 +25,11 @@ test('SauceDemo E2E flow with performance check', async ({ page }) => {
   await page.click('#add-to-cart-sauce-labs-bolt-t-shirt');
   await page.click('#add-to-cart-sauce-labs-fleece-jacket');
   await page.waitForTimeout(2000);
+
+  // REMOVE items
+  await page.click('#remove-sauce-labs-backpack');
+  await page.click('#remove-sauce-labs-bike-light');
+  await page.waitForTimeout(2000);
   
   // Cart
   await page.click('.shopping_cart_link');
