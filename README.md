@@ -8,6 +8,7 @@ This repo contains a functional end-to-end test that:
 - opens `https://www.saucedemo.com/`
 - logs in with standard credentials
 - adds products to the cart
+- remove products from cart
 - completes checkout with test data
 - verifies the order confirmation message
 - logs out at the end
