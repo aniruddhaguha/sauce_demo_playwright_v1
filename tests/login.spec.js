@@ -20,15 +20,17 @@ test('SauceDemo E2E flow with performance check', async ({ page }) => {
   await page.waitForTimeout(2000);
 
   // Add items
-  await page.click('#add-to-cart-sauce-labs-backpack');
-  await page.click('#add-to-cart-sauce-labs-bike-light');
-  await page.click('#add-to-cart-sauce-labs-bolt-t-shirt');
-  await page.click('#add-to-cart-sauce-labs-fleece-jacket');
-  await page.waitForTimeout(2000);
+ await page.click('#add-to-cart-sauce-labs-backpack');
+ await page.click('#add-to-cart-sauce-labs-bike-light');
+ await page.click('#add-to-cart-sauce-labs-bolt-t-shirt');
+ await page.click('#add-to-cart-sauce-labs-fleece-jacket');
+ await page.click('#add-to-cart-sauce-labs-onesie');
+ await page.waitForTimeout(2000);
 
   // REMOVE items
-  await page.click('#remove-sauce-labs-backpack');
-  await page.click('#remove-sauce-labs-bike-light');
+  await page.click('#remove-sauce-labs-bolt-t-shirt');
+  await page.click('#remove-sauce-labs-fleece-jacket');
+  await page.click('#remove-sauce-labs-onesie');    
   await page.waitForTimeout(2000);
   
   // Cart
@@ -49,11 +51,11 @@ test('SauceDemo E2E flow with performance check', async ({ page }) => {
 
   // Finish
   await page.click('#finish');
-  await page.waitForTimeout(2000);
+  await page.waitForTimeout(1000);
 
   const confirmationMessage = await page.textContent('.complete-header');
   expect(confirmationMessage).toBe('Thank you for your order!');
-  await page.waitForTimeout(2000); 
+  await page.waitForTimeout(1000); 
 
   await page.click("#react-burger-menu-btn"); 
   await page.waitForTimeout(2000); 
