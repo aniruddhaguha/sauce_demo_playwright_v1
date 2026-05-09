@@ -27,7 +27,7 @@ test('SauceDemo E2E POM Flow', async ({ page }) => {
   expect(loadTime).toBeLessThan(5000);
 
   // Login
-  await loginPage.login('standard_user', 'secret_sauce');
+  await loginPage.login('standard_user', 'secret_sauce');await loginPage.login('standard_user', 'secret_sauce');
   await page.waitForTimeout(2000);
 
   // Add Products
@@ -71,7 +71,7 @@ test('SauceDemo E2E POM Flow', async ({ page }) => {
   const logoutPage = new LogoutPage(page);
 
   await logoutPage.logout();
-  
+
   console.log('Successfully logged out');
 
 });
