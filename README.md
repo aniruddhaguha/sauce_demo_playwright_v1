@@ -1,53 +1,106 @@
 # Playwright SauceDemo Automation
 
-A simple Playwright Test repository for automating a Sauce Demo checkout flow and validating page performance.
+A Playwright Test repository for automating the Sauce Demo e-commerce checkout flow using the Page Object Model (POM) pattern, with performance validation.
 
-## Repository description
+## Repository Description
 
-This repo contains a functional end-to-end test that:
-- opens `https://www.saucedemo.com/`
-- logs in with standard credentials
-- adds products to the cart
-- remove products from cart
-- completes checkout with test data
-- verifies the order confirmation message
-- logs out at the end
-- checks that the initial page load time stays under 5000 ms
+This repository contains an end-to-end test suite that automates the complete Sauce Demo shopping workflow:
+
+- Navigates to `https://www.saucedemo.com/`
+- Logs in with standard user credentials
+- Adds multiple products to the shopping cart
+- Removes a product from the cart
+- Proceeds through the checkout process with test data
+- Validates the order confirmation message
+- Logs out successfully
+- Monitors and validates that the initial page load time remains under 5000 ms
 
 ## Files
 
-- `tests/login.spec.js` — main test scenario for Sauce Demo E2E automation
-- `playwright.config.js` — Playwright configuration for browser and reporter settings
-- `package.json` — project dependencies and metadata
-- `playwright-report/` — generated report output when tests are run
-- `test-results/` — stored test result artifacts
+- `tests/checkout.spec.js` — Main end-to-end test scenario for Sauce Demo automation
+- `playwright.config.js` — Playwright configuration for browser settings and reporting
+- `package.json` — Project dependencies, scripts, and metadata
+- `playwright-report/` — Generated HTML report output after test execution
+- `test-results/` — Stored test result artifacts and screenshots
 
-## Code structure
+## Code Structure
 
-- `tests/` - contains Playwright test files and scenario implementations
-- `tests/login.spec.js` - single end-to-end test covering login, add-to-cart, checkout, and logout flows
-- `playwright.config.js` - configuration for Playwright test runner, browser options, and reporting
-- `package.json` - project dependencies, scripts, and metadata
-- `playwright-report/` - output folder for HTML test reports generated after execution
-- `test-results/` - folder for raw test result artifacts and logs
+- `tests/` — Contains Playwright test files
+  - `checkout.spec.js` — Complete e-commerce flow test using Page Object Model
+- `pages/` — Page Object Model classes for better test maintainability
+  - `LoginPage.js` — Login page interactions
+  - `InventoryPage.js` — Product inventory and cart management
+  - `CartPage.js` — Shopping cart operations
+  - `CheckoutPage.js` — Checkout form and process
+  - `CompletePage.js` — Order completion validation
+  - `LogoutPage.js` — User logout functionality
+- `playwright.config.js` — Test runner configuration with browser options and reporting
+- `package.json` — Dependencies and npm scripts
+- `playwright-report/` — HTML test reports
+- `test-results/` — Test artifacts and traces
 
 ## Prerequisites
 
 - Node.js 18 or later
-- npm
+- npm or yarn
 
 ## Setup
 
-Install dependencies:
+1. Clone the repository and navigate to the project directory
 
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Install Playwright browsers:
+   ```bash
+   npx playwright install
+   ```
+
+## Running Tests
+
+### Run all tests
 ```bash
-npm install
+npm test
 ```
 
-Install Playwright browsers:
-
+### Run tests in headed mode (visible browser)
 ```bash
-npx playwright install
+npm run test:headed
+```
+
+### Run tests with Playwright UI mode
+```bash
+npm run test:ui
+```
+
+### View test reports
+```bash
+npm run report
+```
+
+### Run specific test file
+```bash
+npx playwright test tests/checkout.spec.js
+```
+
+### Run tests in specific browser
+```bash
+npx playwright test --project=chromium
+```
+
+## Test Configuration
+
+The project is configured to:
+- Run tests in parallel for faster execution
+- Generate HTML reports automatically
+- Capture traces on test failures for debugging
+- Support multiple browsers (currently configured for Chromium)
+
+## Performance Monitoring
+
+The test suite includes performance validation that ensures the Sauce Demo application loads within acceptable time limits (under 5000ms).
 ```
 
 ## Running tests
