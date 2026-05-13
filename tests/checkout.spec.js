@@ -16,43 +16,43 @@ test('SauceDemo E2E POM Flow', async ({ page }) => {
   const completePage = new CompletePage(page);
   const logoutPage = new LogoutPage(page);
 
-  // Open website
-  await loginPage.gotoLoginPage();
+   //goto
+  await loginPage.goto('https://www.saucedemo.com/');
 
   // Login
   await loginPage.login('standard_user', 'secret_sauce');
 
+  // Sorting
+  await inventoryPage.sortProducts('lohi');
+  await inventoryPage.sortProducts('hilo');
+  await inventoryPage.sortProducts('az');
+  await inventoryPage.sortProducts('za');
+
   // Add products
   await inventoryPage.addProducts();
 
-  // Remove one product
-  await inventoryPage.removeProduct();
+  // Remove products
+  await inventoryPage.removeProducts();
 
-  // Open cart
+  // Cart
   await inventoryPage.openCart();
 
   // Checkout
   await cartPage.checkout();
 
-  // Fill checkout form
+  // Fill form
   await checkoutPage.fillInformation('Ani', 'Bro', '12345');
-
-  // Continue checkout
   await checkoutPage.continueCheckout();
-
-  // Finish order
   await checkoutPage.finishCheckout();
 
-  // Validate confirmation
+  // Validate
   const message = await completePage.getConfirmationMessage();
-
   expect(message).toBe('Thank you for your order!');
 
   console.log('Order completed successfully');
 
-  // Logout
+  // LOGOUT
   await logoutPage.logout();
-
   console.log('Successfully logged out');
 
 });

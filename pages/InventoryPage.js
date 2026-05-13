@@ -1,39 +1,57 @@
 class InventoryPage {
+
   constructor(page) {
     this.page = page;
 
-    this.backpack = '#add-to-cart-sauce-labs-backpack';
-    this.bikeLight = '#add-to-cart-sauce-labs-bike-light';
-    this.tshirt = '#add-to-cart-sauce-labs-bolt-t-shirt';
-    this.jacket = '#add-to-cart-sauce-labs-fleece-jacket';
+    // Products
+    this.addBackpack = '#add-to-cart-sauce-labs-backpack';
+    this.addBikeLight = '#add-to-cart-sauce-labs-bike-light';
+    this.addBoltTshirt = '#add-to-cart-sauce-labs-bolt-t-shirt';
+    this.addFleeceJacket = '#add-to-cart-sauce-labs-fleece-jacket';
 
-    this.removeTshirt = '#remove-sauce-labs-bolt-t-shirt';
-    this.removeJacket = '#remove-sauce-labs-fleece-jacket';
+    // Remove
+    this.removeBoltTshirt = '#remove-sauce-labs-bolt-t-shirt';
+    this.removeFleeceJacket = '#remove-sauce-labs-fleece-jacket';
 
-    this.cartButton = '.shopping_cart_link';
+    // Cart
+    this.cartIcon = '.shopping_cart_link';
+
+    // Sort
+    this.sortDropdown = '.product_sort_container';
+
+    // Menu
     this.menuButton = '#react-burger-menu-btn';
-    this.logoutButton = '#logout_sidebar_link';
+    this.logoutLink = '#logout_sidebar_link';
   }
 
+  // ADD PRODUCTS
   async addProducts() {
-    await this.page.click(this.backpack);
-    await this.page.click(this.bikeLight);
-    await this.page.click(this.tshirt);
-    await this.page.click(this.jacket);
+    await this.page.click(this.addBackpack);
+    await this.page.click(this.addBikeLight);
+    await this.page.click(this.addBoltTshirt);
+    await this.page.click(this.addFleeceJacket);
   }
 
-  async removeProduct() {
-    await this.page.click(this.removeTshirt);
-    await this.page.click(this.removeJacket);
+  // REMOVE PRODUCTS
+  async removeProducts() {
+    await this.page.click(this.removeBoltTshirt);
+    await this.page.click(this.removeFleeceJacket);
   }
 
+  // CART
   async openCart() {
-    await this.page.click(this.cartButton);
+    await this.page.click(this.cartIcon);
   }
 
+  // SORT
+  async sortProducts(option) {
+    await this.page.selectOption(this.sortDropdown, option);
+  }
+
+  // LOGOUT
   async logout() {
     await this.page.click(this.menuButton);
-    await this.page.click(this.logoutButton);
+    await this.page.click(this.logoutLink);
   }
 }
 
