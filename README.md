@@ -1,6 +1,7 @@
 # Playwright SauceDemo Automation
 
 A Playwright Test repository automating the Sauce Demo checkout flow using the Page Object Model (POM) pattern.
+
 🧾 QA Automation Project (Playwright + JavaScript + POM)
 🧪 End-to-End UI Test Automation Framework – SauceDemo
 
@@ -14,6 +15,36 @@ Designed and implemented a scalable end-to-end test automation framework using P
 - Integrated Playwright Test Runner for fast, reliable, and parallel test execution.
 - Configured global test settings including timeouts, retries, and reporting.
 
+⚙️ Key Features Implemented
+- 🔐 User authentication testing (valid & invalid login scenarios)
+- 🛒 Product selection, addition, and removal from cart
+- 🔃 Product sorting validation (A–Z, Z–A, price low-to-high/high-to-low)
+- 💳 End-to-end checkout flow automation
+- 📦 Order confirmation validation
+- 🚪 Secure logout functionality testing
+- 📊 HTML report generation for test execution results
+
+🧰 Tech Stack
+- Playwright
+- JavaScript (Node.js)
+- Page Object Model (POM)
+- Playwright Test Runner
+- HTML Reporting
+
+🏗️ Framework Design
+- Modular architecture using Page Object Model
+- Centralized locators inside page classes
+- Reusable methods for UI actions
+- Config-driven execution using playwright.config.js
+- Parallel test execution for faster feedback
+
+🧪 Testing Approach
+- End-to-End (E2E) testing
+- Functional UI testing
+- Regression testing support
+- Cross-browser execution (Chromium-based testing)
+- Assertion-based validation using Playwright expect()
+
 ## Repository Contents
 
 - `tests/checkout.spec.js` — Primary end-to-end test covering the full user journey
@@ -23,17 +54,30 @@ Designed and implemented a scalable end-to-end test automation framework using P
 - `playwright-report/` — Generated HTML reports
 - `test-results/` — Test artifacts and result files
 
-## Code Structure
+## Coding Structure
 
 - `tests/`
-  - `checkout.spec.js` — test scenario that drives the full purchase flow
+  - Contains end-to-end Playwright test files using Page Object Model classes.
+  - `checkout.spec.js` — drives the full SauceDemo purchase flow and asserts key business logic.
 - `pages/`
-  - `LoginPage.js` — login page interactions
-  - `InventoryPage.js` — product selection, cart actions, and navigation
-  - `CartPage.js` — cart validation and checkout initiation
-  - `CheckoutPage.js` — checkout form entry and order submission
-  - `CompletePage.js` — order confirmation validation
-  - `LogoutPage.js` — logout functionality
+  - Implements Page Object Model page classes for UI locators and reusable actions.
+  - `LoginPage.js` — login form interactions and authentication helpers.
+  - `InventoryPage.js` — product sorting, selection, and navigation to cart.
+  - `CartPage.js` — cart item validation and checkout initiation.
+  - `CheckoutPage.js` — checkout form entry and order submission.
+  - `CompletePage.js` — order confirmation validation.
+  - `LogoutPage.js` — logout flow and session cleanup.
+- `fixtures/`
+  - Test setup and reusable fixtures for browser context or common preconditions.
+  - `testsetup.js` — initialization logic used across test suites.
+- `utils/`
+  - Helper utilities and test data used by page objects and tests.
+  - `generateRandomString.js` — random data generation.
+  - `testdata.js` — static test values and configuration data.
+- `playwright.config.js`
+  - Global Playwright settings for timeouts, retries, browsers, and reporting.
+- `package.json`
+  - Project dependencies, scripts, and metadata.
 
 ## Prerequisites
 
@@ -71,7 +115,7 @@ npx playwright test
 ### Run a specific test file
 
 ```bash
-npx playwright test tests/checkout.spec.js --headed
+npx playwright test tests/ --headed
 ```
 
 ### Show HTML report
