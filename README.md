@@ -6,6 +6,14 @@ A Playwright Test repository automating the Sauce Demo checkout flow using the P
 
 Designed and implemented a scalable end-to-end test automation framework using Playwright (JavaScript) following the Page Object Model (POM) design pattern to ensure maintainability, reusability, and stability of UI test cases.
 
+🚀 Project Highlights
+- Developed a full E2E automation suite for the SauceDemo e-commerce application covering login, product sorting, cart management, checkout, and logout workflows.
+- Implemented Page Object Model (POM) architecture separating test logic from UI locators for better maintainability and scalability.
+- Built reusable page classes:
+- LoginPage, InventoryPage, CartPage, CheckoutPage, CompletePage, LogoutPage
+- Integrated Playwright Test Runner for fast, reliable, and parallel test execution.
+- Configured global test settings including timeouts, retries, and reporting.
+
 ## Repository Contents
 
 - `tests/checkout.spec.js` — Primary end-to-end test covering the full user journey
