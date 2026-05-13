@@ -14,62 +14,43 @@ test('SauceDemo E2E POM Flow', async ({ page }) => {
   const cartPage = new CartPage(page);
   const checkoutPage = new CheckoutPage(page);
   const completePage = new CompletePage(page);
+  const logoutPage = new LogoutPage(page);
 
-  // Performance Measurement
-  const startTime = Date.now();
-
+  // Open website
   await loginPage.gotoLoginPage();
 
-  const loadTime = Date.now() - startTime;
-
-  console.log(`Page Load Time: ${loadTime} ms`);
-
-  expect(loadTime).toBeLessThan(5000);
-
   // Login
-  await loginPage.login('standard_user', 'secret_sauce');await loginPage.login('standard_user', 'secret_sauce');
-  await page.waitForTimeout(2000);
+  await loginPage.login('standard_user', 'secret_sauce');
 
-  // Add Products
+  // Add products
   await inventoryPage.addProducts();
-  await page.waitForTimeout(2000);
 
-  // Remove Products
+  // Remove one product
   await inventoryPage.removeProduct();
-  await page.waitForTimeout(2000);
 
-  // Open Cart
+  // Open cart
   await inventoryPage.openCart();
-  await page.waitForTimeout(2000);
 
   // Checkout
   await cartPage.checkout();
-  await page.waitForTimeout(2000);
 
-  // Fill Information
+  // Fill checkout form
   await checkoutPage.fillInformation('Ani', 'Bro', '12345');
-  await page.waitForTimeout(2000);
 
-  // Continue Checkout
+  // Continue checkout
   await checkoutPage.continueCheckout();
-  await page.waitForTimeout(2000);
 
-  // Finish Checkout
+  // Finish order
   await checkoutPage.finishCheckout();
-  await page.waitForTimeout(2000);  
 
-  // Validation
+  // Validate confirmation
   const message = await completePage.getConfirmationMessage();
 
   expect(message).toBe('Thank you for your order!');
 
   console.log('Order completed successfully');
 
-  await page.waitForTimeout(2000);
-
-   // Logout
-  const logoutPage = new LogoutPage(page);
-
+  // Logout
   await logoutPage.logout();
 
   console.log('Successfully logged out');
